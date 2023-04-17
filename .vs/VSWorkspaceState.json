@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\handlers",
+    "\\handlers\\users",
+    "\\utils"
   ],
-  "SelectedNode": "\\C:\\Users\\Denis\\Source\\Repos\\paybot_python",
+  "SelectedNode": "\\app.py",
   "PreviewInSolutionExplorer": false
 }

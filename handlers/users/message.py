@@ -9,6 +9,7 @@ import logging
 
 from config import config
 from buttons import profile_buttons
+from buttons import back_button
 from buttons import sub_buttons
 from cheaktime import timemenedger
 from handlers.users import randompass
@@ -41,13 +42,18 @@ async def messageprofile(message: types.Message):
                 elif status == 1: 
                         text = (f"Добро пожаловать {username}",
                                 f"У вас активная подиска на бот ещё {user_sub}")
-                        await message.answer("\n".join(text))
+                        await message.answer("\n".join(text),reply_markup=back_button.backButton)
                 elif username == None:
                         text = ("Вы не зарегестрировались на бота.",
                                 "Для этого укажите ваш никнейм")
                         await message.answer("\n".join(text))
         elif message.text == "🤍 ПОДПИСКА":
                 await message.answer("Описание",reply_markup= sub_buttons.sub_markup)
+
+        elif message.text == "← НАЗАД":
+                result = db.username_exists(message.from_user.id)
+                username = result[0]
+                await message.answer("Добро пожаловать " + str(username), reply_markup=profile_buttons.startButton)   
 
         for element in randompass.password_length:
                 if message.text == str(element):
